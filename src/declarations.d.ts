@@ -48,7 +48,7 @@ declare namespace NodeJS {
   declare module '*.svg' {
     import * as React from 'react';
   
-    export const ReactComponent: React.FunctionComponent&lt;React.SVGProps &amp; { title?: string }>;
+    export const ReactComponent: React.FunctionComponent&lt;React.SVGProps &amp; 
   
     const src: string;
     export default src;

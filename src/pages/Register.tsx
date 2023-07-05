@@ -13,10 +13,10 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const signup = async (e) => {
+  const signup = async (e: React.FormEvent) => {
     e.preventDefault();
     // const auth = getAuth();
     setLoading(true);
@@ -27,6 +27,10 @@ const Register = () => {
         const storageRef = ref(storage, `images/${Date.now() + username}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on(
+          "state_changed",
+          (snapshot: any) => {
+            console.log(snapshot);
+          },
           (error) => {
             toast.error(error.message);
           },
@@ -59,7 +63,7 @@ const Register = () => {
         setLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
-        toast.error(errorCode, ": ", errorMessage);
+        toast.error(errorCode, errorMessage);
       });
   };
 
@@ -68,7 +72,9 @@ const Register = () => {
       <Container className="mt-5">
         <Row>
           {loading ? (
-            <Col lg="12" className="text-center">Loading...</Col>
+            <Col lg="12" className="text-center">
+              Loading...
+            </Col>
           ) : (
             <Col lg="6" className="m-auto text-center">
               <h3 className="mb-3">Signup</h3>
@@ -100,7 +106,7 @@ const Register = () => {
                 <FormGroup className="login__formgroup">
                   <input
                     type="file"
-                    onChange={(e) => setFile(e.target.files[0])}
+                    onChange={(e) => setFile(e?.target?.files?.[0])}
                   ></input>
                 </FormGroup>
                 <button type="submit" className="buy_btn">

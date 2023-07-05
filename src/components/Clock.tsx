@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 const Clock = () => {
-  const [days, setDays] = useState();
-  const [minutes, setMinutes] = useState();
-  const [hours, setHours] = useState();
-  const [seconds, setSeconds] = useState();
+  const [days, setDays] = useState<number>();
+  const [minutes, setMinutes] = useState<number>();
+  const [hours, setHours] = useState<number>();
+  const [seconds, setSeconds] = useState<number>();
   const countDown = () => {
     const destination = new Date("Oct 10,2023").getTime();
-    let interval;
+    let interval:any;
 
     interval = setInterval(() => {
       const now = new Date().getTime();

@@ -1,8 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export const Helmet = (props) => {
-    document.title="myproject-"+props.title;
-  return (
-    <div className='w-100'>{props.children}</div>
-  )
-}
+type Props = {
+  children: any;
+  title: string | undefined;
+};
+export const Helmet = (props: Props) => {
+  document.title = "myproject-" + props.title;
+  return <div className="w-100">{props.children}</div>;
+};
